@@ -106,6 +106,7 @@ class PemainController extends Controller
             'tgl_lahir' => 'required',
             'harga_pasar' => 'required|numeric',
             'posisi' => 'required|in:gk,df,mf,fw',
+            'negara' => 'required',
             'id_klub' => 'required',
         ]);
 
