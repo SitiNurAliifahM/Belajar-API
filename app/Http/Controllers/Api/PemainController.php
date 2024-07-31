@@ -106,7 +106,6 @@ class PemainController extends Controller
             'tgl_lahir' => 'required',
             'harga_pasar' => 'required|numeric',
             'posisi' => 'required|in:gk,df,mf,fw',
-            'negara' => 'required',
             'id_klub' => 'required',
         ]);
 
@@ -121,7 +120,7 @@ class PemainController extends Controller
         try {
             // upload image
             $path = $request->file('foto')->store('public/foto');
-            $pemain = Pemain::findOrFail();
+            $pemain = Pemain::findOrFail($id);
             $pemain->nama_pemain = $request->nama_pemain;
             $pemain->foto = $path;
             $pemain->tgl_lahir = $request->tgl_lahir;
@@ -132,7 +131,7 @@ class PemainController extends Controller
             $pemain->save();
             return response()->json([
                 'success' => true,
-                'message' => 'data berhasil diperbarui',
+                'message' => 'data berhasil dibuat',
                 'data' => $pemain,
             ], 201);
         } catch (\Exception $e) {
